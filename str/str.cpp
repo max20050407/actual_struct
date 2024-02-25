@@ -15,6 +15,7 @@ struct Football {
 	string tran;
 };
 
+
 int c1() {
 	system("cls");
 	system("color 71");
@@ -284,8 +285,80 @@ int c4() {
 
 	ifstream dialog; dialog.open("dat/d4.txt");
 	for (int i = 0; i < 10; i++) { getline(dialog, line); cout << line << endl; }
-	int param; cin >> param;
+	int param; cin >> param; cout << endl;
 
+	if (param == 3) {
+		for (int i = 0; i < cs - 1; i++) {
+			for (int j = 0; j < cs - 1; j++) {
+				if (stoi(All[j].games) < stoi(All[j + 1].games)) {
+					swap(All[j], All[j + 1]);
+				}
+			}
+		}
+	}
+	if (param == 4) {
+		for (int i = 0; i < cs - 1; i++) {
+			for (int j = 0; j < cs - 1; j++) {
+				if (stoi(All[j].loose) < stoi(All[j + 1].loose)) {
+					swap(All[j], All[j + 1]);
+				}
+			}
+		}
+	}
+	if (param == 5) {
+		for (int i = 0; i < cs - 1; i++) {
+			for (int j = 0; j < cs - 1; j++) {
+				if (stoi(All[j].win) < stoi(All[j + 1].win)) {
+					swap(All[j], All[j + 1]);
+				}
+			}
+		}
+	}
+	if (param == 6) {
+		for (int i = 0; i < cs - 1; i++) {
+			for (int j = 0; j < cs - 1; j++) {
+				if (stoi(All[j].draw) < stoi(All[j + 1].draw)) {
+					swap(All[j], All[j + 1]);
+				}
+			}
+		}
+	}
+	if (param == 7) {
+		for (int i = 0; i < cs - 1; i++) {
+			for (int j = 0; j < cs - 1; j++) {
+				if (stoi(All[j].players) < stoi(All[j + 1].players)) {
+					swap(All[j], All[j + 1]);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < cs; i++) {
+		cout << "Команда номер " << i + 1 << ":" << endl;
+		cout << "Название команды          : " << All[i].name << endl;
+		cout << "Город клуба               : " << All[i].city << endl;
+		cout << "Колличество сигранных игр : " << All[i].games << endl;
+		cout << "Колличество поражений     : " << All[i].loose << endl;
+		cout << "Колличество побед         : " << All[i].win << endl;
+		cout << "Колличество ничей         : " << All[i].draw << endl;
+		cout << "Колличество футболистов   : " << All[i].players << endl;
+		cout << "Фамилия тренера           : " << All[i].tran << endl;
+		cout << endl;
+	}
+
+	ofstream out; out.open("dat/teams_out.txt");
+	for (int i = 0; i < cs; i++) {
+		out << All[i].name << endl;
+		out << All[i].city << endl;
+		out << All[i].games << endl;
+		out << All[i].loose << endl;
+		out << All[i].win << endl;
+		out << All[i].draw << endl;
+		out << All[i].players << endl;
+		out << All[i].tran << endl;
+	}
+
+	out.close();
 	dialog.close();
 
 	return 0;
@@ -311,5 +384,6 @@ int start() {
 int main() {
 	setlocale(LC_ALL, "RUS");
 	start();
+	system("pause");
 	return 0;
 }
